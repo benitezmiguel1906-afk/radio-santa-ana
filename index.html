@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Santa Ana Online</title>
+<meta name="description" content="Escuchá Radio Santa Ana Online en vivo desde cualquier lugar">
+<meta name="theme-color" content="#ff6a00">
+<link rel="manifest" href="#" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --naranja: #ff6a00;
+    --naranja2: #ff9a3c;
+    --negro: #0a0a0a;
+    --gris: #151515;
+    --gris2: #222;
+    --texto: #f0f0f0;
+    --muted: #888;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--negro);
+    color: var(--texto);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 2rem 1rem;
+  }
+
+  /* Fondo animado */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(255,106,0,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,154,60,0.05) 0%, transparent 50%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes bgPulse {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.1) rotate(3deg); }
+  }
+
+  .contenedor {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .antena {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    animation: antenaAnim 2s ease-in-out infinite;
+  }
+
+  @keyframes antenaAnim {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .titulo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.2rem;
+    line-height: 1;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--naranja), var(--naranja2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitulo {
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* Card del reproductor */
+  .player-card {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(255,106,0,0.1), 0 0 0 1px rgba(255,106,0,0.05);
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  /* Visualizador de ondas */
+  .visualizador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+  }
+
+  .barra {
+    width: 4px;
+    background: var(--naranja);
+    border-radius: 4px;
+    animation: onda 1.2s ease-in-out infinite;
+    opacity: 0.3;
+  }
+
+  .barra.activo { opacity: 1; }
+
+  .barra:nth-child(1) { animation-delay: 0s; height: 15px; }
+  .barra:nth-child(2) { animation-delay: 0.1s; height: 25px; }
+  .barra:nth-child(3) { animation-delay: 0.2s; height: 35px; }
+  .barra:nth-child(4) { animation-delay: 0.3s; height: 45px; }
+  .barra:nth-child(5) { animation-delay: 0.4s; height: 50px; }
+  .barra:nth-child(6) { animation-delay: 0.3s; height: 40px; }
+  .barra:nth-child(7) { animation-delay: 0.2s; height: 30px; }
+  .barra:nth-child(8) { animation-delay: 0.1s; height: 20px; }
+  .barra:nth-child(9) { animation-delay: 0s; height: 12px; }
+
+  @keyframes onda {
+    0%, 100% { transform: scaleY(0.4); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* Estado en vivo */
+  .estado-vivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .punto-vivo {
+    width: 10px;
+    height: 10px;
+    background: var(--naranja);
+    border-radius: 50%;
+    animation: pulsarVivo 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulsarVivo {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,106,0,0.7); }
+    50% { box-shadow: 0 0 0 8px rgba(255,106,0,0); }
+  }
+
+  .texto-vivo {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--naranja);
+  }
+
+  /* Botón play principal */
+  .btn-play {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--naranja), var(--naranja2));
+    color: #000;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 30px rgba(255,106,0,0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(255,106,0,0.6);
+  }
+
+  .btn-play:active { transform: scale(0.96); }
+
+  /* Volumen */
+  .control-volumen {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .label-vol {
+    font-size: 0.8rem;
+    color: var(--muted);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  input[type=range] {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    background: var(--gris2);
+    border-radius: 4px;
+    outline: none;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--naranja);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255,106,0,0.5);
+  }
+
+  .vol-valor {
+    font-size: 0.8rem;
+    color: var(--naranja);
+    min-width: 35px;
+    font-weight: 700;
+  }
+
+  /* Botones de volumen accesibles */
+  .btns-vol {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+  }
+
+  .btn-vol {
+    background: var(--gris2);
+    border: 1px solid #333;
+    color: var(--texto);
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn-vol:hover {
+    background: var(--naranja);
+    color: #000;
+    border-color: var(--naranja);
+  }
+
+  /* Canción en vivo */
+  .cancion-card {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .icono-nota {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .cancion-info { flex: 1; overflow: hidden; }
+
+  .cancion-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .cancion-nombre {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--naranja2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* WhatsApp */
+  .btn-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: #25d366;
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    width: 100%;
+    transition: background 0.15s, transform 0.1s;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
+  .btn-whatsapp:active { transform: translateY(0); }
+
+  /* Redes sociales */
+  .redes {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+
+  .btn-red {
+    background: var(--gris);
+    border: 1px solid #2a2a2a;
+    color: var(--texto);
+    border-radius: 12px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s, color 0.15s, transform 0.1s;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .btn-red:hover { border-color: var(--naranja); color: var(--naranja); transform: translateY(-2px); }
+
+  /* Footer */
+  .footer {
+    font-size: 0.75rem;
+    color: #444;
+    text-align: center;
+    animation: fadeUp 0.8s ease 0.7s both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Accesibilidad: foco visible */
+  button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--naranja);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<main class="contenedor" role="main">
+
+  <!-- Header -->
+  <header class="header">
+    <span class="antena" role="img" aria-label="antena de radio">📡</span>
+    <h1 class="titulo">Radio Santa Ana</h1>
+    <p class="subtitulo">En vivo — Online</p>
+  </header>
+
+  <!-- Reproductor -->
+  <section class="player-card" aria-label="Reproductor de radio">
+
+    <!-- Visualizador de ondas -->
+    <div class="visualizador" aria-hidden="true">
+      <div class="barra" id="b1"></div>
+      <div class="barra" id="b2"></div>
+      <div class="barra" id="b3"></div>
+      <div class="barra" id="b4"></div>
+      <div class="barra" id="b5"></div>
+      <div class="barra" id="b6"></div>
+      <div class="barra" id="b7"></div>
+      <div class="barra" id="b8"></div>
+      <div class="barra" id="b9"></div>
+    </div>
+
+    <!-- Estado EN VIVO -->
+    <div class="estado-vivo" role="status" aria-live="polite">
+      <div class="punto-vivo" aria-hidden="true"></div>
+      <span class="texto-vivo" id="textoEstado">En vivo</span>
+    </div>
+
+    <!-- Botón Play/Pause -->
+    <button class="btn-play" id="btnPlay" onclick="togglePlay()" aria-label="Reproducir Radio Santa Ana">
+      ▶
+    </button>
+
+    <!-- Control de volumen con slider -->
+    <div class="control-volumen">
+      <span class="label-vol" id="labelVol">Volumen</span>
+      <input type="range" id="sliderVol" min="0" max="100" value="80"
+             aria-label="Control de volumen"
+             oninput="cambiarVolumenSlider(this.value)">
+      <span class="vol-valor" id="valorVol" aria-live="polite">80%</span>
+    </div>
+
+    <!-- Botones accesibles para NVDA -->
+    <div class="btns-vol">
+      <button class="btn-vol" onclick="ajustarVolumen(-10)" aria-label="Bajar volumen">− Bajar</button>
+      <button class="btn-vol" onclick="ajustarVolumen(10)" aria-label="Subir volumen">+ Subir</button>
+    </div>
+
+  </section>
+
+  <!-- Canción en vivo -->
+  <div class="cancion-card" aria-label="Información de reproducción actual">
+    <span class="icono-nota" aria-hidden="true">🎵</span>
+    <div class="cancion-info">
+      <div class="cancion-label">Escuchando ahora</div>
+      <div class="cancion-nombre" id="nombreCancion">Radio Santa Ana Online</div>
+    </div>
+  </div>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/595975168192" target="_blank" rel="noopener"
+     class="btn-whatsapp" aria-label="Contactar por WhatsApp">
+    <span aria-hidden="true">💬</span>
+    Escribinos por WhatsApp
+  </a>
+
+  <!-- Redes sociales -->
+  <nav class="redes" aria-label="Redes sociales">
+    <a href="#" class="btn-red" aria-label="Seguinos en Facebook">
+      <span aria-hidden="true">📘</span> Facebook
+    </a>
+    <a href="#" class="btn-red" aria-label="Seguinos en Instagram">
+      <span aria-hidden="true">📸</span> Instagram
+    </a>
+    <a href="#" class="btn-red" aria-label="Seguinos en TikTok">
+      <span aria-hidden="true">🎵</span> TikTok
+    </a>
+  </nav>
+
+  <p class="footer">© 2026 Radio Santa Ana Online — Paraguay</p>
+
+</main>
+
+<!-- Audio oculto -->
+<audio id="radioAudio" preload="none" aria-hidden="true">
+  <source src="https://stream.zeno.fm/0ag2jpurgtpvv" type="audio/mpeg">
+  <source src="https://stream.zeno.fm/0ag2jpurgtpvv.pls" type="audio/x-scpls">
+</audio>
+
+<script>
+  const audio = document.getElementById('radioAudio');
+  const btnPlay = document.getElementById('btnPlay');
+  const textoEstado = document.getElementById('textoEstado');
+  const sliderVol = document.getElementById('sliderVol');
+  const valorVol = document.getElementById('valorVol');
+  const barras = document.querySelectorAll('.barra');
+  let reproduciendo = false;
+  let volumen = 0.8;
+
+  audio.volume = volumen;
+
+  function togglePlay() {
+    if (reproduciendo) {
+      audio.pause();
+      audio.src = '';
+      btnPlay.textContent = '▶';
+      btnPlay.setAttribute('aria-label', 'Reproducir Radio Santa Ana');
+      textoEstado.textContent = 'Pausado';
+      barras.forEach(b => b.classList.remove('activo'));
+      reproduciendo = false;
+    } else {
+      audio.src = 'https://stream.zeno.fm/0ag2jpurgtpvv';
+      audio.load();
+      audio.play().then(() => {
+        btnPlay.textContent = '⏸';
+        btnPlay.setAttribute('aria-label', 'Pausar Radio Santa Ana');
+        textoEstado.textContent = 'En vivo';
+        barras.forEach(b => b.classList.add('activo'));
+        reproduciendo = true;
+      }).catch(() => {
+        textoEstado.textContent = 'Error al conectar';
+      });
+    }
+  }
+
+  function cambiarVolumenSlider(val) {
+    volumen = val / 100;
+    audio.volume = volumen;
+    valorVol.textContent = val + '%';
+  }
+
+  function ajustarVolumen(cambio) {
+    let nuevaVal = Math.round(volumen * 100) + cambio;
+    nuevaVal = Math.max(0, Math.min(100, nuevaVal));
+    volumen = nuevaVal / 100;
+    audio.volume = volumen;
+    sliderVol.value = nuevaVal;
+    valorVol.textContent = nuevaVal + '%';
+  }
+
+  audio.addEventListener('error', () => {
+    textoEstado.textContent = 'Error de conexion';
+    btnPlay.textContent = '▶';
+    reproduciendo = false;
+    barras.forEach(b => b.classList.remove('activo'));
+  });
+</script>
+
+</body>
+</html>
