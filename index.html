@@ -6,7 +6,11 @@
 <title>Radio Santa Ana Online</title>
 <meta name="description" content="Escuchá Radio Santa Ana Online en vivo desde cualquier lugar">
 <meta name="theme-color" content="#ff6a00">
-<link rel="manifest" href="#" />
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Radio Santa Ana">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -534,5 +538,15 @@
   });
 </script>
 
+<script>
+  // Registrar Service Worker para PWA
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch((err) => console.log('Error SW:', err));
+    });
+  }
+</script>
 </body>
 </html>

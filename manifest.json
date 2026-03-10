@@ -1,0 +1,35 @@
+{
+  "name": "Radio Santa Ana Online",
+  "short_name": "Radio Santa Ana",
+  "description": "Escuchá Radio Santa Ana Online en vivo desde cualquier lugar",
+  "start_url": "/radio-santa-ana/",
+  "scope": "/radio-santa-ana/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a0a",
+  "theme_color": "#ff6a00",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Reproducir Radio",
+      "short_name": "Reproducir",
+      "description": "Abrir y reproducir Radio Santa Ana",
+      "url": "/radio-santa-ana/"
+    }
+  ]
+}
