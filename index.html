@@ -23,9 +23,7 @@
     --texto: #f0f0f0;
     --muted: #888;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--negro);
     color: var(--texto);
@@ -38,8 +36,6 @@
     overflow-x: hidden;
     padding: 2rem 1rem;
   }
-
-  /* Fondo animado */
   body::before {
     content: '';
     position: fixed;
@@ -53,12 +49,10 @@
     pointer-events: none;
     z-index: 0;
   }
-
   @keyframes bgPulse {
     0% { transform: scale(1) rotate(0deg); }
     100% { transform: scale(1.1) rotate(3deg); }
   }
-
   .contenedor {
     position: relative;
     z-index: 1;
@@ -69,25 +63,20 @@
     align-items: center;
     gap: 1.5rem;
   }
-
-  /* Header */
   .header {
     text-align: center;
     animation: fadeDown 0.8s ease both;
   }
-
   .antena {
     font-size: 3rem;
     display: block;
     margin-bottom: 0.5rem;
     animation: antenaAnim 2s ease-in-out infinite;
   }
-
   @keyframes antenaAnim {
     0%, 100% { transform: rotate(-5deg); }
     50% { transform: rotate(5deg); }
   }
-
   .titulo {
     font-family: 'Bebas Neue', cursive;
     font-size: 3.2rem;
@@ -98,7 +87,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .subtitulo {
     font-size: 0.85rem;
     color: var(--muted);
@@ -106,8 +94,6 @@
     text-transform: uppercase;
     margin-top: 0.3rem;
   }
-
-  /* Card del reproductor */
   .player-card {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -117,8 +103,6 @@
     box-shadow: 0 20px 60px rgba(255,106,0,0.1), 0 0 0 1px rgba(255,106,0,0.05);
     animation: fadeUp 0.8s ease 0.2s both;
   }
-
-  /* Visualizador de ondas */
   .visualizador {
     display: flex;
     align-items: center;
@@ -127,7 +111,6 @@
     height: 50px;
     margin-bottom: 1.5rem;
   }
-
   .barra {
     width: 4px;
     background: var(--naranja);
@@ -135,9 +118,7 @@
     animation: onda 1.2s ease-in-out infinite;
     opacity: 0.3;
   }
-
   .barra.activo { opacity: 1; }
-
   .barra:nth-child(1) { animation-delay: 0s; height: 15px; }
   .barra:nth-child(2) { animation-delay: 0.1s; height: 25px; }
   .barra:nth-child(3) { animation-delay: 0.2s; height: 35px; }
@@ -147,13 +128,10 @@
   .barra:nth-child(7) { animation-delay: 0.2s; height: 30px; }
   .barra:nth-child(8) { animation-delay: 0.1s; height: 20px; }
   .barra:nth-child(9) { animation-delay: 0s; height: 12px; }
-
   @keyframes onda {
     0%, 100% { transform: scaleY(0.4); }
     50% { transform: scaleY(1); }
   }
-
-  /* Estado en vivo */
   .estado-vivo {
     display: flex;
     align-items: center;
@@ -161,7 +139,6 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
-
   .punto-vivo {
     width: 10px;
     height: 10px;
@@ -169,12 +146,10 @@
     border-radius: 50%;
     animation: pulsarVivo 1.5s ease-in-out infinite;
   }
-
   @keyframes pulsarVivo {
     0%, 100% { box-shadow: 0 0 0 0 rgba(255,106,0,0.7); }
     50% { box-shadow: 0 0 0 8px rgba(255,106,0,0); }
   }
-
   .texto-vivo {
     font-size: 0.8rem;
     font-weight: 700;
@@ -182,8 +157,6 @@
     text-transform: uppercase;
     color: var(--naranja);
   }
-
-  /* Botón play principal */
   .btn-play {
     width: 80px;
     height: 80px;
@@ -200,29 +173,20 @@
     box-shadow: 0 8px 30px rgba(255,106,0,0.4);
     transition: transform 0.15s, box-shadow 0.15s;
   }
-
-  .btn-play:hover {
-    transform: scale(1.08);
-    box-shadow: 0 12px 40px rgba(255,106,0,0.6);
-  }
-
+  .btn-play:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(255,106,0,0.6); }
   .btn-play:active { transform: scale(0.96); }
-
-  /* Volumen */
   .control-volumen {
     display: flex;
     align-items: center;
     gap: 0.8rem;
     margin-bottom: 0.5rem;
   }
-
   .label-vol {
     font-size: 0.8rem;
     color: var(--muted);
     min-width: 60px;
     text-align: right;
   }
-
   input[type=range] {
     flex: 1;
     height: 4px;
@@ -231,7 +195,6 @@
     border-radius: 4px;
     outline: none;
   }
-
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
@@ -241,22 +204,18 @@
     cursor: pointer;
     box-shadow: 0 0 8px rgba(255,106,0,0.5);
   }
-
   .vol-valor {
     font-size: 0.8rem;
     color: var(--naranja);
     min-width: 35px;
     font-weight: 700;
   }
-
-  /* Botones de volumen accesibles */
   .btns-vol {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
     margin-top: 0.8rem;
   }
-
   .btn-vol {
     background: var(--gris2);
     border: 1px solid #333;
@@ -269,14 +228,7 @@
     font-weight: 700;
     transition: background 0.15s, border-color 0.15s;
   }
-
-  .btn-vol:hover {
-    background: var(--naranja);
-    color: #000;
-    border-color: var(--naranja);
-  }
-
-  /* Canción en vivo */
+  .btn-vol:hover { background: var(--naranja); color: #000; border-color: var(--naranja); }
   .cancion-card {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -288,21 +240,14 @@
     gap: 0.8rem;
     animation: fadeUp 0.8s ease 0.4s both;
   }
-
-  .icono-nota {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-  }
-
+  .icono-nota { font-size: 1.5rem; flex-shrink: 0; }
   .cancion-info { flex: 1; overflow: hidden; }
-
   .cancion-label {
     font-size: 0.7rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 2px;
   }
-
   .cancion-nombre {
     font-size: 0.95rem;
     font-weight: 700;
@@ -311,8 +256,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  /* WhatsApp */
   .btn-whatsapp {
     display: flex;
     align-items: center;
@@ -329,18 +272,14 @@
     transition: background 0.15s, transform 0.1s;
     animation: fadeUp 0.8s ease 0.5s both;
   }
-
   .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
   .btn-whatsapp:active { transform: translateY(0); }
-
-  /* Redes sociales */
   .redes {
     display: flex;
     gap: 1rem;
     justify-content: center;
     animation: fadeUp 0.8s ease 0.6s both;
   }
-
   .btn-red {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -357,28 +296,21 @@
     transition: border-color 0.15s, color 0.15s, transform 0.1s;
     font-family: 'Nunito', sans-serif;
   }
-
   .btn-red:hover { border-color: var(--naranja); color: var(--naranja); transform: translateY(-2px); }
-
-  /* Footer */
   .footer {
     font-size: 0.75rem;
     color: #444;
     text-align: center;
     animation: fadeUp 0.8s ease 0.7s both;
   }
-
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  /* Accesibilidad: foco visible */
   button:focus-visible, a:focus-visible {
     outline: 2px solid var(--naranja);
     outline-offset: 3px;
@@ -389,17 +321,14 @@
 
 <main class="contenedor" role="main">
 
-  <!-- Header -->
   <header class="header">
     <span class="antena" role="img" aria-label="antena de radio">📡</span>
     <h1 class="titulo">Radio Santa Ana</h1>
     <p class="subtitulo">En vivo — Online</p>
   </header>
 
-  <!-- Reproductor -->
   <section class="player-card" aria-label="Reproductor de radio">
 
-    <!-- Visualizador de ondas -->
     <div class="visualizador" aria-hidden="true">
       <div class="barra" id="b1"></div>
       <div class="barra" id="b2"></div>
@@ -412,18 +341,16 @@
       <div class="barra" id="b9"></div>
     </div>
 
-    <!-- Estado EN VIVO -->
+    <!-- Estado inicial cambiado a "Listo" -->
     <div class="estado-vivo" role="status" aria-live="polite">
       <div class="punto-vivo" aria-hidden="true"></div>
-      <span class="texto-vivo" id="textoEstado">En vivo</span>
+      <span class="texto-vivo" id="textoEstado">Listo</span>
     </div>
 
-    <!-- Botón Play/Pause -->
     <button class="btn-play" id="btnPlay" onclick="togglePlay()" aria-label="Reproducir Radio Santa Ana">
       ▶
     </button>
 
-    <!-- Control de volumen con slider -->
     <div class="control-volumen">
       <span class="label-vol" id="labelVol">Volumen</span>
       <input type="range" id="sliderVol" min="0" max="100" value="80"
@@ -432,7 +359,6 @@
       <span class="vol-valor" id="valorVol" aria-live="polite">80%</span>
     </div>
 
-    <!-- Botones accesibles para NVDA -->
     <div class="btns-vol">
       <button class="btn-vol" onclick="ajustarVolumen(-10)" aria-label="Bajar volumen">− Bajar</button>
       <button class="btn-vol" onclick="ajustarVolumen(10)" aria-label="Subir volumen">+ Subir</button>
@@ -440,7 +366,6 @@
 
   </section>
 
-  <!-- Canción en vivo -->
   <div class="cancion-card" aria-label="Información de reproducción actual">
     <span class="icono-nota" aria-hidden="true">🎵</span>
     <div class="cancion-info">
@@ -449,14 +374,13 @@
     </div>
   </div>
 
-  <!-- WhatsApp -->
   <a href="https://wa.me/595975168192" target="_blank" rel="noopener"
      class="btn-whatsapp" aria-label="Contactar por WhatsApp">
     <span aria-hidden="true">💬</span>
     Escribinos por WhatsApp
   </a>
 
-  <!-- Redes sociales -->
+  <!-- AQUÍ DEBES PONER TUS ENLACES REALES SI LOS TIENES. SI NO, DEJALOS ASÍ POR AHORA -->
   <nav class="redes" aria-label="Redes sociales">
     <a href="#" class="btn-red" aria-label="Seguinos en Facebook">
       <span aria-hidden="true">📘</span> Facebook
@@ -473,7 +397,6 @@
 
 </main>
 
-<!-- Audio oculto -->
 <audio id="radioAudio" preload="none" aria-hidden="true">
   <source src="https://stream.zeno.fm/0ag2jpurgtpvv" type="audio/mpeg">
   <source src="https://stream.zeno.fm/0ag2jpurgtpvv.pls" type="audio/x-scpls">
@@ -501,6 +424,9 @@
       barras.forEach(b => b.classList.remove('activo'));
       reproduciendo = false;
     } else {
+      // Avisamos al lector de pantalla que está cargando
+      textoEstado.textContent = 'Cargando...';
+      
       audio.src = 'https://stream.zeno.fm/0ag2jpurgtpvv';
       audio.load();
       audio.play().then(() => {
@@ -511,6 +437,9 @@
         reproduciendo = true;
       }).catch(() => {
         textoEstado.textContent = 'Error al conectar';
+        btnPlay.textContent = '▶';
+        btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
+        reproduciendo = false;
       });
     }
   }
@@ -531,15 +460,15 @@
   }
 
   audio.addEventListener('error', () => {
-    textoEstado.textContent = 'Error de conexion';
+    textoEstado.textContent = 'Error de conexión';
     btnPlay.textContent = '▶';
+    btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
     reproduciendo = false;
     barras.forEach(b => b.classList.remove('activo'));
   });
 </script>
 
 <script>
-  // Registrar Service Worker para PWA
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js')
