@@ -23,7 +23,9 @@
     --texto: #f0f0f0;
     --muted: #888;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     background: var(--negro);
     color: var(--texto);
@@ -36,6 +38,7 @@
     overflow-x: hidden;
     padding: 2rem 1rem;
   }
+
   body::before {
     content: '';
     position: fixed;
@@ -49,10 +52,12 @@
     pointer-events: none;
     z-index: 0;
   }
+
   @keyframes bgPulse {
     0% { transform: scale(1) rotate(0deg); }
     100% { transform: scale(1.1) rotate(3deg); }
   }
+
   .contenedor {
     position: relative;
     z-index: 1;
@@ -63,20 +68,24 @@
     align-items: center;
     gap: 1.5rem;
   }
+
   .header {
     text-align: center;
     animation: fadeDown 0.8s ease both;
   }
+
   .antena {
     font-size: 3rem;
     display: block;
     margin-bottom: 0.5rem;
     animation: antenaAnim 2s ease-in-out infinite;
   }
+
   @keyframes antenaAnim {
     0%, 100% { transform: rotate(-5deg); }
     50% { transform: rotate(5deg); }
   }
+
   .titulo {
     font-family: 'Bebas Neue', cursive;
     font-size: 3.2rem;
@@ -87,6 +96,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
   .subtitulo {
     font-size: 0.85rem;
     color: var(--muted);
@@ -94,6 +104,7 @@
     text-transform: uppercase;
     margin-top: 0.3rem;
   }
+
   .player-card {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -103,6 +114,7 @@
     box-shadow: 0 20px 60px rgba(255,106,0,0.1), 0 0 0 1px rgba(255,106,0,0.05);
     animation: fadeUp 0.8s ease 0.2s both;
   }
+
   .visualizador {
     display: flex;
     align-items: center;
@@ -111,6 +123,7 @@
     height: 50px;
     margin-bottom: 1.5rem;
   }
+
   .barra {
     width: 4px;
     background: var(--naranja);
@@ -118,7 +131,9 @@
     animation: onda 1.2s ease-in-out infinite;
     opacity: 0.3;
   }
+
   .barra.activo { opacity: 1; }
+
   .barra:nth-child(1) { animation-delay: 0s; height: 15px; }
   .barra:nth-child(2) { animation-delay: 0.1s; height: 25px; }
   .barra:nth-child(3) { animation-delay: 0.2s; height: 35px; }
@@ -128,10 +143,12 @@
   .barra:nth-child(7) { animation-delay: 0.2s; height: 30px; }
   .barra:nth-child(8) { animation-delay: 0.1s; height: 20px; }
   .barra:nth-child(9) { animation-delay: 0s; height: 12px; }
+
   @keyframes onda {
     0%, 100% { transform: scaleY(0.4); }
     50% { transform: scaleY(1); }
   }
+
   .estado-vivo {
     display: flex;
     align-items: center;
@@ -139,6 +156,7 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
+
   .punto-vivo {
     width: 10px;
     height: 10px;
@@ -146,10 +164,12 @@
     border-radius: 50%;
     animation: pulsarVivo 1.5s ease-in-out infinite;
   }
+
   @keyframes pulsarVivo {
     0%, 100% { box-shadow: 0 0 0 0 rgba(255,106,0,0.7); }
     50% { box-shadow: 0 0 0 8px rgba(255,106,0,0); }
   }
+
   .texto-vivo {
     font-size: 0.8rem;
     font-weight: 700;
@@ -157,6 +177,7 @@
     text-transform: uppercase;
     color: var(--naranja);
   }
+
   .btn-play {
     width: 80px;
     height: 80px;
@@ -173,20 +194,28 @@
     box-shadow: 0 8px 30px rgba(255,106,0,0.4);
     transition: transform 0.15s, box-shadow 0.15s;
   }
-  .btn-play:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(255,106,0,0.6); }
+
+  .btn-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(255,106,0,0.6);
+  }
+
   .btn-play:active { transform: scale(0.96); }
+
   .control-volumen {
     display: flex;
     align-items: center;
     gap: 0.8rem;
     margin-bottom: 0.5rem;
   }
+
   .label-vol {
     font-size: 0.8rem;
     color: var(--muted);
     min-width: 60px;
     text-align: right;
   }
+
   input[type=range] {
     flex: 1;
     height: 4px;
@@ -195,6 +224,7 @@
     border-radius: 4px;
     outline: none;
   }
+
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 18px;
@@ -204,18 +234,21 @@
     cursor: pointer;
     box-shadow: 0 0 8px rgba(255,106,0,0.5);
   }
+
   .vol-valor {
     font-size: 0.8rem;
     color: var(--naranja);
     min-width: 35px;
     font-weight: 700;
   }
+
   .btns-vol {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
     margin-top: 0.8rem;
   }
+
   .btn-vol {
     background: var(--gris2);
     border: 1px solid #333;
@@ -228,7 +261,13 @@
     font-weight: 700;
     transition: background 0.15s, border-color 0.15s;
   }
-  .btn-vol:hover { background: var(--naranja); color: #000; border-color: var(--naranja); }
+
+  .btn-vol:hover {
+    background: var(--naranja);
+    color: #000;
+    border-color: var(--naranja);
+  }
+
   .cancion-card {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -240,14 +279,21 @@
     gap: 0.8rem;
     animation: fadeUp 0.8s ease 0.4s both;
   }
-  .icono-nota { font-size: 1.5rem; flex-shrink: 0; }
+
+  .icono-nota {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
   .cancion-info { flex: 1; overflow: hidden; }
+
   .cancion-label {
     font-size: 0.7rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 2px;
   }
+
   .cancion-nombre {
     font-size: 0.95rem;
     font-weight: 700;
@@ -256,6 +302,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .btn-whatsapp {
     display: flex;
     align-items: center;
@@ -272,14 +319,17 @@
     transition: background 0.15s, transform 0.1s;
     animation: fadeUp 0.8s ease 0.5s both;
   }
+
   .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
   .btn-whatsapp:active { transform: translateY(0); }
+
   .redes {
     display: flex;
     gap: 1rem;
     justify-content: center;
     animation: fadeUp 0.8s ease 0.6s both;
   }
+
   .btn-red {
     background: var(--gris);
     border: 1px solid #2a2a2a;
@@ -296,21 +346,26 @@
     transition: border-color 0.15s, color 0.15s, transform 0.1s;
     font-family: 'Nunito', sans-serif;
   }
+
   .btn-red:hover { border-color: var(--naranja); color: var(--naranja); transform: translateY(-2px); }
+
   .footer {
     font-size: 0.75rem;
     color: #444;
     text-align: center;
     animation: fadeUp 0.8s ease 0.7s both;
   }
+
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
   button:focus-visible, a:focus-visible {
     outline: 2px solid var(--naranja);
     outline-offset: 3px;
@@ -341,7 +396,6 @@
       <div class="barra" id="b9"></div>
     </div>
 
-    <!-- Estado inicial cambiado a "Listo" -->
     <div class="estado-vivo" role="status" aria-live="polite">
       <div class="punto-vivo" aria-hidden="true"></div>
       <span class="texto-vivo" id="textoEstado">Listo</span>
@@ -380,7 +434,6 @@
     Escribinos por WhatsApp
   </a>
 
-  <!-- AQUÍ DEBES PONER TUS ENLACES REALES SI LOS TIENES. SI NO, DEJALOS ASÍ POR AHORA -->
   <nav class="redes" aria-label="Redes sociales">
     <a href="#" class="btn-red" aria-label="Seguinos en Facebook">
       <span aria-hidden="true">📘</span> Facebook
@@ -397,10 +450,8 @@
 
 </main>
 
-<audio id="radioAudio" preload="none" aria-hidden="true">
-  <source src="https://stream.zeno.fm/0ag2jpurgtpvv" type="audio/mpeg">
-  <source src="https://stream.zeno.fm/0ag2jpurgtpvv.pls" type="audio/x-scpls">
-</audio>
+<!-- Audio oculto. La URL se carga desde JS para evitar errores prematuros -->
+<audio id="radioAudio" preload="none" aria-hidden="true"></audio>
 
 <script>
   const audio = document.getElementById('radioAudio');
@@ -409,6 +460,10 @@
   const sliderVol = document.getElementById('sliderVol');
   const valorVol = document.getElementById('valorVol');
   const barras = document.querySelectorAll('.barra');
+  
+  // La URL de tu radio
+  const STREAM_URL = 'https://stream.zeno.fm/0ag2jpurgtpvv';
+  
   let reproduciendo = false;
   let volumen = 0.8;
 
@@ -416,33 +471,59 @@
 
   function togglePlay() {
     if (reproduciendo) {
+      // PAUSAR
       audio.pause();
-      audio.src = '';
+      audio.removeAttribute('src'); // Limpia la fuente para detener la descarga
+      audio.load();
       btnPlay.textContent = '▶';
       btnPlay.setAttribute('aria-label', 'Reproducir Radio Santa Ana');
       textoEstado.textContent = 'Pausado';
       barras.forEach(b => b.classList.remove('activo'));
       reproduciendo = false;
     } else {
-      // Avisamos al lector de pantalla que está cargando
-      textoEstado.textContent = 'Cargando...';
-      
-      audio.src = 'https://stream.zeno.fm/0ag2jpurgtpvv';
+      // REPRODUCIR
+      textoEstado.textContent = 'Conectando...';
+      audio.src = STREAM_URL;
       audio.load();
+      
       audio.play().then(() => {
+        // Éxito al conectar
         btnPlay.textContent = '⏸';
         btnPlay.setAttribute('aria-label', 'Pausar Radio Santa Ana');
         textoEstado.textContent = 'En vivo';
         barras.forEach(b => b.classList.add('activo'));
         reproduciendo = true;
-      }).catch(() => {
-        textoEstado.textContent = 'Error al conectar';
-        btnPlay.textContent = '▶';
-        btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
-        reproduciendo = false;
+      }).catch((error) => {
+        // Si el usuario hace doble clic rápido, da un error "AbortError". Lo ignoramos.
+        if (error.name !== 'AbortError') {
+          textoEstado.textContent = 'Error de conexión';
+          btnPlay.textContent = '▶';
+          btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
+          reproduciendo = false;
+        }
       });
     }
   }
+
+  // Escuchar cuando el audio realmente empieza a sonar (para asegurar el estado)
+  audio.addEventListener('playing', () => {
+    textoEstado.textContent = 'En vivo';
+    reproduciendo = true;
+    btnPlay.textContent = '⏸';
+    btnPlay.setAttribute('aria-label', 'Pausar Radio Santa Ana');
+    barras.forEach(b => b.classList.add('activo'));
+  });
+
+  // Escuchar errores SOLO si estamos intentando reproducir
+  audio.addEventListener('error', () => {
+    if (reproduciendo) {
+      textoEstado.textContent = 'Se perdió la conexión';
+      btnPlay.textContent = '▶';
+      btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
+      reproduciendo = false;
+      barras.forEach(b => b.classList.remove('activo'));
+    }
+  });
 
   function cambiarVolumenSlider(val) {
     volumen = val / 100;
@@ -458,14 +539,6 @@
     sliderVol.value = nuevaVal;
     valorVol.textContent = nuevaVal + '%';
   }
-
-  audio.addEventListener('error', () => {
-    textoEstado.textContent = 'Error de conexión';
-    btnPlay.textContent = '▶';
-    btnPlay.setAttribute('aria-label', 'Reintentar reproducción');
-    reproduciendo = false;
-    barras.forEach(b => b.classList.remove('activo'));
-  });
 </script>
 
 <script>
@@ -478,4 +551,4 @@
   }
 </script>
 </body>
-</html>
+  </html>
